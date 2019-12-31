@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -44,7 +44,7 @@ android {
                 "CONFERENCE_WIFI_OFFERING_START",
                 "\"${conference_wifi_offering_start}\""
 
-        consumerProguardFiles 'consumer-proguard-rules.pro'
+        consumerProguardFiles "consumer-proguard-rules.pro"
     }
 
     buildTypes {
@@ -64,31 +64,31 @@ android {
             // plugin should try to use when a dependency does not include a
             // "staging" build type.
             // Used with :test-shared, which doesn't have a staging variant.
-            matchingFallbacks = ['debug']
+            matchingFallbacks = ["debug"]
         }
     }
 
     lintOptions {
-        disable 'InvalidPackage'
+        disable "InvalidPackage"
     }
 
     // debug and release variants share the same source dir
     sourceSets {
-        debug.java.srcDir 'src/debugRelease/java'
-        release.java.srcDir 'src/debugRelease/java'
+        debug.java.srcDir "src/debugRelease/java"
+        release.java.srcDir "src/debugRelease/java"
     }
 }
 
 dependencies {
     api project(":model")
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation project(':test-shared')
-    testImplementation project(':androidTest-shared')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    testImplementation project(":test-shared")
+    testImplementation project(":androidTest-shared")
 
     // Architecture Components
-    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata:$rootProject.lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-viewmodel:$rootProject.lifecycleVersion"
+    implementation("androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata:$rootProject.lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel:$rootProject.lifecycleVersion")
 
     // Maps
     api("com.google.maps.android:android-maps-utils:$rootProject.googleMapUtilsVersion") {
@@ -98,19 +98,19 @@ dependencies {
 
     // Utils
     api "com.jakewharton.timber:timber:$rootProject.timberVersion"
-    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-    implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
+    implementation("com.google.code.gson:gson:$rootProject.gsonVersion")
+    implementation("androidx.core:core-ktx:$rootProject.ktxVersion")
 
     // OkHttp
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+    implementation("com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion")
+    implementation("com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion")
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion")
 
     // Dagger
-    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
+    implementation("com.google.dagger:dagger-android:$rootProject.dagger")
+    implementation("com.google.dagger:dagger-android-support:$rootProject.dagger")
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
 
@@ -135,4 +135,4 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$rootProject.lifecycleVersion"
 }
 
-apply plugin: 'com.google.gms.google-services'
+apply plugin: "com.google.gms.google-services"

@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'io.fabric'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-kapt"
+apply plugin: "io.fabric"
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
     defaultConfig {
-        applicationId "com.google.samples.apps.iosched"
-        minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion rootProject.targetSdkVersion
-        versionCode rootProject.versionCodeMobile
-        versionName rootProject.versionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId = "com.google.samples.apps.iosched"
+        minSdkVersion(rootProject.minSdkVersion)
+        targetSdkVersion(rootProject.targetSdkVersion)
+        versionCode = rootProject.versionCodeMobile
+        versionName = rootProject.versionName
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "float[]",
                 "MAP_FLOORPLAN_MAPPING",
@@ -55,10 +55,10 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled= true
             shrinkResources true
             manifestPlaceholders = [crashlyticsEnabled: true]
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             resValue "string",
                     "google_maps_key",
                     "AIzaSyD5jqwKMm1SeoYsW25vxCXfTlhDBeZ4H5c"
@@ -76,7 +76,7 @@ android {
             // plugin should try to use when a dependency does not include a
             // "staging" build type.
             // Used with :test-shared, which doesn't have a staging variant.
-            matchingFallbacks = ['debug']
+            matchingFallbacks = ["debug"]
         }
     }
     dataBinding {
@@ -95,8 +95,8 @@ android {
 
     // debug and release variants share the same source dir
     sourceSets {
-        debug.java.srcDir 'src/debugRelease/java'
-        release.java.srcDir 'src/debugRelease/java'
+        debug.java.srcDir "src/debugRelease/java"
+        release.java.srcDir "src/debugRelease/java"
     }
 
     lintOptions {
@@ -108,68 +108,68 @@ android {
 
 dependencies {
     implementation project(":shared")
-    testImplementation project(':test-shared')
-    testImplementation project(':androidTest-shared')
+    testImplementation project(":test-shared")
+    testImplementation project(":androidTest-shared")
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: "libs", include: ["*.jar"])
 
     // UI
-    implementation "androidx.appcompat:appcompat:$rootProject.appcompatVersion"
-    implementation "androidx.browser:browser:$rootProject.browserVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
-    implementation "com.google.android.material:material:$rootProject.materialVersion"
-    implementation "com.google.android:flexbox:$rootProject.flexboxVersion"
-    implementation "com.airbnb.android:lottie:$rootProject.lottieVersion"
-    implementation "com.pacioianu.david:ink-page-indicator:$rootProject.pageIndicatorVersion"
+    implementation("androidx.appcompat:appcompat:$rootProject.appcompatVersion")
+    implementation("androidx.browser:browser:$rootProject.browserVersion")
+    implementation("androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion")
+    implementation("com.google.android.material:material:$rootProject.materialVersion")
+    implementation("com.google.android:flexbox:$rootProject.flexboxVersion")
+    implementation("com.airbnb.android:lottie:$rootProject.lottieVersion")
+    implementation("com.pacioianu.david:ink-page-indicator:$rootProject.pageIndicatorVersion")
 
     // Architecture Components
-    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
-    testImplementation "androidx.arch.core:core-testing:$rootProject.lifecycleVersion"
+    implementation("androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion")
+    kapt("androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion")
+    testImplementation("androidx.arch.core:core-testing:$rootProject.lifecycleVersion")
 
     // Dagger
-    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    implementation("com.google.dagger:dagger-android:$rootProject.dagger")
+    implementation("com.google.dagger:dagger-android-support:$rootProject.dagger")
+    kapt("com.google.dagger:dagger-compiler:$rootProject.dagger")
+    kapt("com.google.dagger:dagger-android-processor:$rootProject.dagger")
 
     // Glide
-    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    implementation("com.github.bumptech.glide:glide:$rootProject.glideVersion")
+    annotationProcessor("com.github.bumptech.glide:compiler:$rootProject.glideVersion")
 
     // Fabric and Firebase
-    implementation "com.firebaseui:firebase-ui-auth:$rootProject.firebaseUiVersion"
-    implementation "com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion"
+    implementation("com.firebaseui:firebase-ui-auth:$rootProject.firebaseUiVersion")
+    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion")
 
     // Utils
     // Date and time API for Java.
-    api "com.jakewharton.threetenabp:threetenabp:$rootProject.threetenabpVersion"
-    testImplementation "org.threeten:threetenbp:$rootProject.threetenbpVersion"
-    implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
+    api("com.jakewharton.threetenabp:threetenabp:$rootProject.threetenabpVersion")
+    testImplementation("org.threeten:threetenbp:$rootProject.threetenbpVersion")
+    implementation("androidx.core:core-ktx:$rootProject.ktxVersion")
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion")
 
     // Instrumentation tests
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test:runner:$rootProject.runnerVersion"
-    androidTestImplementation "androidx.test:rules:$rootProject.rulesVersion"
+    androidTestImplementation("androidx.test.espresso:espresso-core:$rootProject.espressoVersion")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion")
+    androidTestImplementation("androidx.test:runner:$rootProject.runnerVersion")
+    androidTestImplementation("androidx.test:rules:$rootProject.rulesVersion")
 
     // Local unit tests
-    testImplementation "junit:junit:$rootProject.junitVersion"
-    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
-    testImplementation "com.nhaarman:mockito-kotlin:$rootProject.mockitoKotlinVersion"
-    testImplementation "org.hamcrest:hamcrest-library:$rootProject.hamcrestVersion"
+    testImplementation("junit:junit:$rootProject.junitVersion")
+    testImplementation("org.mockito:mockito-core:$rootProject.mockitoVersion")
+    testImplementation("com.nhaarman:mockito-kotlin:$rootProject.mockitoKotlinVersion")
+    testImplementation("org.hamcrest:hamcrest-library:$rootProject.hamcrestVersion")
 
     // Leak Canary
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
-    stagingImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion")
+    stagingImplementation("com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion")
+    releaseImplementation("com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion")
 
     // Solve conflicts with gson. DataBinding is using an old version.
-    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation("com.google.code.gson:gson:$gsonVersion")
 
 }
 
-apply plugin: 'com.google.gms.google-services'
+apply plugin: "com.google.gms.google-services"

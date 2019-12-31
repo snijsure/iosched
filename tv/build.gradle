@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'io.fabric'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-kapt"
+apply plugin: "io.fabric"
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -38,7 +38,7 @@ android {
             minifyEnabled true
             shrinkResources true
             manifestPlaceholders = [crashlyticsEnabled: true]
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
 
         staging {
@@ -48,7 +48,7 @@ android {
             // plugin should try to use when a dependency does not include a
             // "staging" build type.
             // Used with :test-shared, which doesn't have a staging variant.
-            matchingFallbacks = ['debug']
+            matchingFallbacks = ["debug"]
         }
 
         debug {
@@ -65,65 +65,65 @@ android {
 
     // debug and release variants share the same source dir
     sourceSets {
-        debug.java.srcDir 'src/debugRelease/java'
-        release.java.srcDir 'src/debugRelease/java'
+        debug.java.srcDir "src/debugRelease/java"
+        release.java.srcDir "src/debugRelease/java"
     }
 }
 
 dependencies {
     implementation project(":shared")
-    testImplementation project(':test-shared')
-    testImplementation project(':androidTest-shared')
+    testImplementation project(":test-shared")
+    testImplementation project(":androidTest-shared")
 
     // UI
-    implementation "androidx.appcompat:appcompat:$rootProject.appcompatVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
-    implementation "androidx.leanback:leanback:$rootProject.leanbackVersion"
-    implementation "androidx.tvprovider:tvprovider:$rootProject.tvproviderVersion"
-    implementation "com.google.android.material:material:$rootProject.materialVersion"
-    implementation "com.google.android:flexbox:$rootProject.flexboxVersion"
+    implementation("androidx.appcompat:appcompat:$rootProject.appcompatVersion")
+    implementation("androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion")
+    implementation("androidx.leanback:leanback:$rootProject.leanbackVersion")
+    implementation("androidx.tvprovider:tvprovider:$rootProject.tvproviderVersion")
+    implementation("com.google.android.material:material:$rootProject.materialVersion")
+    implementation("com.google.android:flexbox:$rootProject.flexboxVersion")
 
     // Architecture Components
-    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
-    testImplementation "androidx.arch.core:core-testing:$rootProject.lifecycleVersion"
+    implementation("androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion")
+    kapt("androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion")
+    testImplementation("androidx.arch.core:core-testing:$rootProject.lifecycleVersion")
 
     // Dagger
-    implementation "com.google.dagger:dagger-android:$rootProject.dagger"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    implementation("com.google.dagger:dagger-android:$rootProject.dagger")
+    implementation("com.google.dagger:dagger-android-support:$rootProject.dagger")
+    kapt("com.google.dagger:dagger-compiler:$rootProject.dagger")
+    kapt("com.google.dagger:dagger-android-processor:$rootProject.dagger")
 
     // Glide
-    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    implementation("com.github.bumptech.glide:glide:$rootProject.glideVersion")
+    annotationProcessor("com.github.bumptech.glide:compiler:$rootProject.glideVersion")
 
     // Utils
     // Date and time API for Java.
-    api "com.jakewharton.threetenabp:threetenabp:$rootProject.threetenabpVersion"
-    testImplementation "org.threeten:threetenbp:$rootProject.threetenbpVersion"
-    implementation "androidx.core:core-ktx:$rootProject.ktxVersion"
+    api("com.jakewharton.threetenabp:threetenabp:$rootProject.threetenabpVersion")
+    testImplementation("org.threeten:threetenbp:$rootProject.threetenbpVersion")
+    implementation("androidx.core:core-ktx:$rootProject.ktxVersion")
 
     // Fabric and Firebase
-    implementation "com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion"
+    implementation("com.crashlytics.sdk.android:crashlytics:$crashlyticsVersion")
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion")
 
     // Instrumentation tests
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation("androidx.test.espresso:espresso-core:$rootProject.espressoVersion")
+    androidTestImplementation("androidx.test:runner:$rootProject.runnerVersion")
 
     // Local unit tests
-    testImplementation "junit:junit:$rootProject.junitVersion"
-    testImplementation "org.hamcrest:hamcrest-library:$rootProject.hamcrestVersion"
+    testImplementation("junit:junit:$rootProject.junitVersion")
+    testImplementation("org.hamcrest:hamcrest-library:$rootProject.hamcrestVersion")
 
     // Solve conflicts with gson. DataBinding is using an old version.
-    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation("com.google.code.gson:gson:$rootProject.gsonVersion")
 
     // Solve conflicts with okhttp. Firestore is using an old version.
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    implementation("com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion")
 
 }
 
-apply plugin: 'com.google.gms.google-services'
+apply plugin: "com.google.gms.google-services"
